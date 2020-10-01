@@ -7,7 +7,7 @@ function trackUserHandler() {
 
 // 17(5)
 function function2(posData) {
-  console.log(posData)  
+  console.log(posData)
 }
 
 // setTimeout(() => {
@@ -20,14 +20,14 @@ button.addEventListener('click', trackUserHandler);
 
 
 //working on how the geoloacation uses the callback function and how to pass parameter
-
-function function1(aFuntion){
-  let name = 'ihmma'
-  aFuntion(name);
-  console.log('this is executed immediately')
+function f1(name) {
+  console.log(name)
 }
 
-function f1(name){
-  console.log(name)
-  }
-function1(f1)
+function function1(aFuntion) {
+  let name = 'ihmma'
+  aFuntion();
+}
+
+
+function1(f1.bind(name))
