@@ -5,7 +5,7 @@ const output = document.querySelector('p');
 // now lets promisify the location method
 function getPosition() {
   const promise = new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(posData => {  
+    navigator.geolocation.getCurrentPosition(posData => {
       resolve(posData)
     },
       error => {
@@ -16,10 +16,10 @@ function getPosition() {
 }
 
 
-function setTimer(duration) {
+function setTimer(duration, pos) {
   const promise = new Promise((resolve, reject) => { //  this inside function is executed right after creating the promice object
     setTimeout(() => {
-      resolve('done!')
+      resolve(pos)
     },
       duration)
   })
@@ -27,12 +27,29 @@ function setTimer(duration) {
 }
 
 function trackUserHandler() {
-  getPosition().then(pos => {
-    setTimer(2000).then(data => {
-      console.log(data, pos)
+  getPosition()
+    .then(pos => {
+      return setTimer(2000, pos) //max passed the position in a different way
     })
-  })
+    .then((pos) => {
+      console.log(pos)
+    })
 }
+
+button.addEventListener('click', trackUserHandler);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function trackUserHandler() {
 //   navigator.geolocation.getCurrentPosition(posData => {
@@ -44,8 +61,3 @@ function trackUserHandler() {
 //       console.log('error')
 //     })
 // }
-
-button.addEventListener('click', trackUserHandler);
-
-
-
