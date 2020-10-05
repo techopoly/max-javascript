@@ -1,7 +1,6 @@
 const button = document.querySelector('button');
 const output = document.querySelector('p');
-//17-14: async await and error handling
-
+//17-15: WE WILL LEARN SOME METHODS RELATED TO 'Promise'. Dont need to remember them. Just be aware of them
 //promisify geolocation method
 
 async function getPosition() {
@@ -27,24 +26,29 @@ async function set(duration) {
   return promise
 }
 
-/* one down side of async await is everything inside that async function is chained with then. So test it. lets add
-other async functions inside trackUserHandler and see that those functions are executed only after the upper 
-functions are done with execution */
+// Promise.race(): the one that completes execution first can pass the data. the ohter ones data is not passed
+// function trackUserHandler(){
+//   Promise.race([getPosition(), set(2000)]).then(data => {
+//     console.log(data)
+//   })
+// }
 
-async function trackUserHandler() {
-  let position; // changing them from try block scope to one scope up
-  let timerData;
-  try {
-    position = await getPosition()
-    timerData = await set(2000);
-  } catch (error) {
-    console.log(error.message);
-  }
-  console.log(timerData, position);
+//Promise.all(). passes all the data of each function as array in the order they are placed in all([]) array.
+/* if one of its promise is rejected then the whole is canceled. we get an error */
+// function trackUserHandler(){
+//   Promise.all([getPosition(), set(2000)]).then(allData => {
+//     console.log(allData)
+//   })
+// }
 
-  console.log('getting position'); /* in the .then() chaining this function doesnt depend on the execution of
-  other function above this one. but in async await the will execute after the above functions are done executing.
-  see the console if you dont believe me. also wathc the lecture if you dont understand the concept */
+// the way around is Promise.allSettled. 
+/* this one does not cancel the exeution of other promises if one of the promise is rejected, instead gives you
+a detailed summary of which promise failed and passes the data of passed promises  */
+
+function trackUserHandler(){
+  Promise.allSettled([getPosition(), set(2000)]).then(allData => {
+    console.log(allData)
+  })
 }
 
 button.addEventListener('click', trackUserHandler)
