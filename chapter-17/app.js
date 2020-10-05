@@ -1,16 +1,36 @@
 const button = document.querySelector('button');
 const output = document.querySelector('p');
 
-function trackUserHandler() {
-  console.log('Clicked!');
-}
-function function1(){
-  console.log('this is executed immediately')
+//promisify geolocation method
+
+async function getPosition() {
+  const promise = new Promise((res, rej) => {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        res(pos)
+      },
+      error => {
+        rej(error)
+      })
+  })
+  return promise
 }
 
-setTimeout(() => {
-  console.log('this is executed after 3 sec')
-}, 3000);
+async function set(duration){
+  const promise = new Promise((res, rej) => {
+    setTimeout(() => {
+      res('done')
+    },
+    duration)
+  })
+  return promise
+}
 
-button.addEventListener('click', trackUserHandler);
-function1();
+async function trackUserHandler() {
+  const position = await getPosition()
+  const timerData = await set(2000);
+  console.log(timerData, position)
+}
+
+
+button.addEventListener('click', trackUserHandler)
