@@ -33,7 +33,7 @@ function trackUserHandler() {
     })
     .catch(err => {
       console.log(err);
-      return 'position not found'   
+      return 'position not found'
     })
     .then((position) => {
       console.log(position)
@@ -41,17 +41,6 @@ function trackUserHandler() {
 }
 
 button.addEventListener('click', trackUserHandler);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
