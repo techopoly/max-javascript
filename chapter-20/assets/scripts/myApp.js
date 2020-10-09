@@ -1,3 +1,4 @@
+//adding dynamic imports in removeEventListener
 import { addingEventListener } from './AddingEventListener.js' // in the carly braces we define what to import and in quotation we define where to import
 
 addingEventListener('active');
