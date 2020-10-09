@@ -1,52 +1,7 @@
-function addingEventListener(type) {
-    const handler = type === 'active' ? activeToFinish : FinishToActive
-    allProjects = document.querySelectorAll(`#${type}-projects li`);
-    console.log(allProjects)
-    for (const eachProject of allProjects) {
-        const button = eachProject.querySelector('button:last-of-type')
-        button.addEventListener('click', handler.bind(null, eachProject))
-    }
-}
+import { addingEventListener } from './AddingEventListener.js' // in the carly braces we define what to import and in quotation we define where to import
+
 addingEventListener('active');
 addingEventListener('finished');
-
-function activeToFinish(element) {
-    //update DOM
-    remove(element);
-    //remove EventListener from element and add EventListener to the same element
-    add(removeEventListener(element, FinishToActive, 'Finish'), 'finished');
-}
-
-function FinishToActive(element) {
-    //update DOM
-    remove(element);
-    //remove EventListener from element and add EventListener to the same element
-    add(removeEventListener(element, activeToFinish, 'Activate'), 'active');
-}
-
-function remove(element) {
-    element.remove();
-}
-function add(element, type) {
-    const insideUl = document.querySelector(`#${type}-projects ul`);
-    insideUl.appendChild(element);
-}
-function removeEventListener(element, handler, type) {
-    clonedElement = element.cloneNode(true);
-    //element.replaceWith(clonedElement);
-    const button = clonedElement.querySelector('button:last-of-type');
-    button.textContent = type === 'Finish' ? 'Activate' : 'Finish'
-    button.addEventListener('click', handler.bind(null, clonedElement))
-    return clonedElement;
-}
-
-
-
-
-
-
-
-
 
 
 
