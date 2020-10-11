@@ -1,29 +1,28 @@
 /* 
-lets work with session storage
--session storage data are stored in the session storage 
--they are deleted when the user closes the window
--they can be deleted by the user or the browser when there is not enough 
+lets work with cookies
+-cookies data are stored in the cookies 
+-they are not deleted when the user closes the window
+-they can be deleted by the user 
+-cookies are available when web pages are servered by a real web server
+-we need a real server to add cookies to a page as the web requires that for sequrity reason (covered in the tooling
+    module)
 */
 
 const store = document.getElementById('store-btn')
 const retrieve = document.getElementById('retrieve-btn')
 
-const uid = 'u1234';
+
 const user = {
     name: 'ishmam',
     hobby: ['cooking', 'playing']
 }
 
 store.addEventListener('click', ()=>{
-    window.sessionStorage.setItem('uid', JSON.stringify(user))
+    const userCookie = 'u123456'
+   document.cookie = `uid=${userCookie}`
 })
 
 retrieve.addEventListener('click', ()=>{
-    if(window.sessionStorage.getItem('uid')){
-        console.log('here is the id : ' , JSON.parse(window.sessionStorage.getItem('uid')))
-    }
-    else{
-        console.log('could not find id')
-    }
+   console.log(document.cookie)
 });
 
