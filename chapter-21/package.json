@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle-kor": "webpack",
-    "server-on": "webpack-dev-server"
+    "server-on-dev": "webpack-dev-server",
+    "server-on-prod": "webpack --config webpack.config.prod.js"
   },
   "author": "Ishmam Tasin'",
   "license": "ISC",
