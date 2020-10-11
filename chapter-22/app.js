@@ -1,7 +1,7 @@
 /* 
-lets work with local storage
--local storage data are stored in the local storage 
--they are not deleted when the user closes the window
+lets work with session storage
+-session storage data are stored in the session storage 
+-they are deleted when the user closes the window
 -they can be deleted by the user or the browser when there is not enough 
 */
 
@@ -15,16 +15,15 @@ const user = {
 }
 
 store.addEventListener('click', ()=>{
-    window.localStorage.setItem('uid', JSON.stringify(user))
+    window.sessionStorage.setItem('uid', JSON.stringify(user))
 })
 
-
-
 retrieve.addEventListener('click', ()=>{
-    if(window.localStorage.getItem('uid')){
-        console.log('here is the id : ' , JSON.parse(window.localStorage.getItem('uid')))
+    if(window.sessionStorage.getItem('uid')){
+        console.log('here is the id : ' , JSON.parse(window.sessionStorage.getItem('uid')))
     }
     else{
         console.log('could not find id')
     }
 });
+
