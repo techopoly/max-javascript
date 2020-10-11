@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 const path = require('path')// eslint-disable-next-line no-undef
+// eslint-disable-next-line no-unused-vars
+const CleanPlugin = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: './src/myApp.js',
@@ -12,6 +14,5 @@ module.exports = {
         contentBase: './' // where the html file is located.
     },
     devtool: 'eval-cheap-module-source-map'
-
     
 }

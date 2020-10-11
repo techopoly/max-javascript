@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],[,function(n,t,e){"use strict";function i(n,t,e){const i=n.cloneNode(!0),o=i.querySelector("button:last-of-type");return o.textContent="Finish"===e?"Activate":"Finish",o.addEventListener("click",t.bind(null,i)),i}e.r(t),e.d(t,"removeEventListener",(function(){return i}))}]]);
+//# sourceMappingURL=0.59050e9c8075dd5f20d2.js.map
