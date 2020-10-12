@@ -1,7 +1,8 @@
 /* 
+22-5
 lets work with cookies
 -cookies data are stored in the cookies 
--they are not deleted when the user closes the window
+-if ther is no expiration set, they are deleted when the user closes the window/session expires
 -they can be deleted by the user 
 -cookies are available when web pages are servered by a real web server
 -we need a real server to add cookies to a page as the web requires that for sequrity reason (covered in the tooling
@@ -19,7 +20,8 @@ const user = {
 
 store.addEventListener('click', ()=>{
     const userCookie = 'u123456'
-   document.cookie = `uid=${userCookie}`
+    document.cookie = `uid=${userCookie}`
+   document.cookie = `user=${JSON.stringify(user)}`
 })
 
 retrieve.addEventListener('click', ()=>{
