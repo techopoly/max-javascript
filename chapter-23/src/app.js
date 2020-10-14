@@ -31,3 +31,4 @@ button.addEventListener('click', () => {
 
 //conclusion: its better to show the user some sort of message for the apis that is not suppoort on the browser than
 //not show anything and leaving the user clueless about the issue
+
