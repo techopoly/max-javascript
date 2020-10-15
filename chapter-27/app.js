@@ -1,21 +1,42 @@
-//27-5
-/* now we will work on http requests and how the servers responds to such request.
--First we have to require the http module.
-- it will allow us to use the methods available inside that module.
--it enables us to create http request and send send them.
-- recieve http request and send them to another server
-- this is what the webpack dev servers and other development servers do. they use node.js to set up a basic web server
-which runs locally on your system to host your html files. but you can not write any serverside logic on those servers.
-they just servers those html files.
+//27-7
+/* 
+-we recieve data as request.
+-req.on is like the addeventlistener in browser. it looks for incoming request and recieves them.
+-the 'data' argumnet is like the 'click' in eventlintener. it tell which kind of request it is and if it has any data.
+ it tells its a request containing data.
+-req.on is asychronous. so the res method would not wait for the req.on to complete. thata why we have to put 
+ res inside req.on method so that it runs once the request is recieved and server is done with processing the 
+ request data.
+ 
 */
-
 
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-    res.setHeader('Content-Type', 'text/html') //we set the header to tell browser what type of content we are sending as response
-    res.write('<h1>hello there !!<h1>');
-    res.end()
+    let body = [];
+
+    req.on('data', (chunk) => { // this is asychronous 
+        body.push(chunk);
+    });
+    req.on('end', () => { // this is asychronous 
+        body = Buffer.concat(body).toString();
+        console.log(body);
+        let username = 'Unknown user';
+        if(body){
+            username = body.split('=')[1];
+        }
+        
+        console.log('Request method : ' + req.method)
+        console.log('Request Url : ' + req.url)
+        res.setHeader('Content-Type', 'text/html')
+        res.write(`
+        <form method="post" action="/" > 
+            <input type="text" name="username" placeholder="type your name"> 
+            <button type ="submit"> Send </button>
+        </form>
+        <h1>Hi ${username} </h1>`);
+        res.end()
+    });
 });
 
 server.listen(9000);
