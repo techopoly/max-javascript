@@ -1,10 +1,12 @@
 /* 
-27-10
+27-11
 */
 const express = require('express');
 const bodyParser = require('body-parser')
-
 const app = express();
+
+app.set('views', 'views');
+app.set('view engine', 'ejs')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -15,11 +17,8 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
     const username = req.body.username || 'Unknown User'
-    res.send(`
-    <form method="post" action="/" > 
-        <input type="text" name="username" placeholder="type your name"> 
-        <button type ="submit"> Send </button>
-    </form>
-    <h1>Hi ${username} </h1>`)
+    res.render('index', {
+        user : username
+    })
 })
 app.listen(3000);
