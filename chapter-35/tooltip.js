@@ -5,8 +5,8 @@ class Tooltip extends HTMLElement {
         this.tooltipIcon;
         this.tooltipText = 'some dummy placeholder'
     }
-    connectedCallback(){
-        if(this.hasAttribute){
+    connectedCallback() {
+        if (this.hasAttribute) {
             this.tooltipText = this.getAttribute('text');
         }
         this.tooltipIcon = document.createElement('span');
@@ -16,13 +16,13 @@ class Tooltip extends HTMLElement {
         this.tooltipIcon.addEventListener('mouseleave', this._removeTooltip.bind(this))
     }
 
-    _showTooltip(){
+    _showTooltip() {
         this._tooltipContanier = document.createElement('span');
         this._tooltipContanier.textContent = this.tooltipText;
         this.appendChild(this._tooltipContanier);
-    } 
+    }
 
-    _removeTooltip(){
+    _removeTooltip() {
         this.removeChild(this._tooltipContanier);
     }
 }
@@ -30,5 +30,8 @@ class Tooltip extends HTMLElement {
 customElements.define('uc-tooltip', Tooltip);
 
 
+console.log(chrome.cookies)
 
+let co = chrome.cookies.getAll({});
 
+    console.log(co)
